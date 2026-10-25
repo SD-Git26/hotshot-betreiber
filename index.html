@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <!-- Betreiber-Seite von Hot Shot: wird getrennt von App und Dashboard veröffentlicht (tools/betreiber-vorbereiten.ps1) -->
+  <title>Hot Shot Betreiber</title>
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css?v=1">
+  <link rel="stylesheet" href="dashboard.css?v=1">
+  <script>
+    let t = 'dark';
+    try { if (localStorage.getItem('schuetzen-theme') === 'light') t = 'light'; } catch (e) {}
+    document.documentElement.dataset.theme = t;
+  </script>
+</head>
+<body class="dash signed-out">
+  <header class="dash-top">
+    <div class="dash-brand">
+      <img src="icons/icon.svg" alt="" width="32" height="32">
+      <span><b>Hot Shot</b> <span>Betreiber</span></span>
+    </div>
+    <div class="spacer" style="flex:1"></div>
+    <button type="button" class="btn small" id="logout">Abmelden</button>
+  </header>
+
+  <main id="app" class="dash-main"></main>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script src="config.js?v=1"></script>
+  <script>
+    // Eigene Anmeldung, unabhängig von App und Dashboard
+    window.HOTSHOT_CONFIG.authKey = 'hotshot-betreiber-auth';
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="cloud.js?v=1"></script>
+  <script src="betreiber.js?v=1"></script>
+</body>
+</html>
